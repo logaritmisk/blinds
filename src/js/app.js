@@ -22,9 +22,7 @@ class App extends React.Component {
     var seconds = secondsRemaining % 60
 
     return (
-      <div>
-        {minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}
-      </div>
+      <span>{minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}</span>
     )
   }
 
@@ -40,6 +38,12 @@ class App extends React.Component {
     return controllers
   }
 
+  formatBlinds() {
+    return (
+      <span>{this.props.smallBlind}/{this.props.bigBlind}</span>
+    )
+  }
+
   componentDidMount() {
 
   }
@@ -51,11 +55,13 @@ class App extends React.Component {
   render() {
     var time = this.formatTime()
     var controllers = this.formatControllers()
+    var blinds = this.formatBlinds()
 
     return (
       <div>
         {time}
         {controllers}
+        {blinds}
       </div>
     )
   }
@@ -75,10 +81,18 @@ class App extends React.Component {
   }
 }
 
-App.defaultProps = { roundLength: 60 * 20 }
+App.propTypes = {
+  smallBlind: React.PropTypes.number.isRequired,
+  bigBlind: React.PropTypes.number.isRequired,
+  roundLength: React.PropTypes.number
+}
+
+App.defaultProps = {
+  roundLength: 60 * 20
+}
 
 
 React.render(
-  <App />,
+  <App smallBlind={25} bigBlind={50} />,
   document.getElementById('app')
 )
