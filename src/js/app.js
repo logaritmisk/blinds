@@ -1,3 +1,5 @@
+var RoundList = require('./components/RoundList.react')
+
 var React = require('react')
 
 
@@ -15,17 +17,6 @@ class App extends React.Component {
     this.setState({ secondsRemaining: this.state.secondsRemaining - 1 })
   }
 
-  formatTime() {
-    var secondsRemaining = this.state.secondsRemaining
-
-    var minutes = Math.trunc(secondsRemaining / 60)
-    var seconds = secondsRemaining % 60
-
-    return (
-      <span>{minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}</span>
-    )
-  }
-
   formatControllers() {
     var controllers = []
 
@@ -38,12 +29,6 @@ class App extends React.Component {
     return controllers
   }
 
-  formatBlinds() {
-    return (
-      <span>{this.props.smallBlind}/{this.props.bigBlind}</span>
-    )
-  }
-
   componentDidMount() {
 
   }
@@ -53,16 +38,10 @@ class App extends React.Component {
   }
 
   render() {
-    var time = this.formatTime()
     var controllers = this.formatControllers()
-    var blinds = this.formatBlinds()
 
     return (
-      <div>
-        {time}
-        {controllers}
-        {blinds}
-      </div>
+      <RoundList />
     )
   }
 
@@ -82,8 +61,6 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  smallBlind: React.PropTypes.number.isRequired,
-  bigBlind: React.PropTypes.number.isRequired,
   roundLength: React.PropTypes.number
 }
 
@@ -93,6 +70,6 @@ App.defaultProps = {
 
 
 React.render(
-  <App smallBlind={25} bigBlind={50} />,
+  <App />,
   document.getElementById('app')
 )
