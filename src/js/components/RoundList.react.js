@@ -6,18 +6,19 @@ var RoundController = require('./RoundController.react')
 var React = require('react')
 
 
-class RoundList extends React.Component {
-  getStateFromStores() {
-    return {
-      rounds: RoundStore.getRounds(),
-      active: RoundStore.getActive()
-    }
+function getStateFromStores() {
+  return {
+    rounds: RoundStore.getRounds(),
+    active: RoundStore.getActive()
   }
+}
 
+
+class RoundList extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = this.getStateFromStores()
+    this.state = getStateFromStores()
   }
 
   componentDidMount() {
@@ -31,21 +32,9 @@ class RoundList extends React.Component {
   render() {
     var rounds = this.state.rounds.map((round, i) => {
       if (i == this.state.active) {
-        return (
-          <RoundController
-            key={i}
-            round={round}
-            />
-        )
+        return <RoundController key={i} round={i} />
       } else {
-        return (
-          <RoundItem
-            key={i}
-            smallBlind={round.smallBlind}
-            bigBlind={round.bigBlind}
-            roundLength={round.roundLength}
-            />
-        )
+        return <RoundItem key={i} round={i} />
       }
     })
 
@@ -57,7 +46,7 @@ class RoundList extends React.Component {
   }
 
   _onChange() {
-    this.setState(this.getStateFromStores())
+    this.setState(getStateFromStores())
   }
 }
 

@@ -13,12 +13,14 @@ var _rounds = [
   {
     smallBlind: 25,
     bigBlind: 50,
-    roundLength: 60 * 20
+    roundLength: 60 * 20,
+    secondsRemaining: 60 * 20
   },
   {
     smallBlind: 50,
     bigBlind: 75,
-    roundLength: 60 * 20
+    roundLength: 60 * 20,
+    secondsRemaining: 60 * 20
   }
 ]
 
@@ -40,6 +42,10 @@ class RoundStore extends EventEmitter {
 
   getRounds() {
     return _rounds
+  }
+
+  getRound(id) {
+    return _rounds[id]
   }
 
   getActive() {
