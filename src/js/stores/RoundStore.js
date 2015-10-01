@@ -71,6 +71,11 @@ RoundStore.dispatchToken = AppDispatcher.register(action => {
     _instance.emitChange()
     break;
 
+    case ActionTypes.ACTIVE:
+    _active = action.round
+    _instance.emitChange()
+    break;
+
     default:
     // do nothing
   }

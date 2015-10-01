@@ -1,3 +1,4 @@
+var RoundActionCreators = require('../actions/RoundActionCreators')
 var RoundStore = require('../stores/RoundStore')
 
 var React = require('react')
@@ -31,11 +32,15 @@ class RoundItem extends React.Component {
 
   render() {
     return (
-      <div>
+      <div onClick={this._onClick.bind(this)}>
         {this.renderTimer()}
         {this.renderBlinds()}
       </div>
     )
+  }
+
+  _onClick() {
+    RoundActionCreators.setActive(this.props.round.id)
   }
 }
 

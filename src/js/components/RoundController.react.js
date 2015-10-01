@@ -8,7 +8,9 @@ class RoundController extends RoundItem {
   constructor(props) {
     super(props)
 
-    this.state = { isRunning: false }
+    this.state = {
+      isRunning: false
+    }
   }
 
   componentWillUnmount() {
@@ -38,7 +40,7 @@ class RoundController extends RoundItem {
   }
 
   _tick() {
-    RoundActionCreators.tick(this.props.round.id)
+    RoundActionCreators.tickTimer(this.props.round.id)
   }
 
   _toggle() {
@@ -52,7 +54,7 @@ class RoundController extends RoundItem {
   }
 
   _reset() {
-    RoundActionCreators.reset(this.props.round.id)
+    RoundActionCreators.resetTimer(this.props.round.id)
   }
 }
 

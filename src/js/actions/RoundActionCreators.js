@@ -6,16 +6,23 @@ var ActionTypes = AppConstants.ActionTypes
 
 export default {
 
-  tick(id) {
+  tickTimer(id) {
     AppDispatcher.dispatch({
       type: ActionTypes.TICK,
       round: id
     })
   },
 
-  reset(id) {
+  resetTimer(id) {
     AppDispatcher.dispatch({
       type: ActionTypes.RESET,
+      round: id
+    })
+  },
+
+  setActive(id) {
+    AppDispatcher.dispatch({
+      type: ActionTypes.ACTIVE,
       round: id
     })
   }
