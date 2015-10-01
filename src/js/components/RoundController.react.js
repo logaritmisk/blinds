@@ -1,3 +1,4 @@
+var RoundActionCreators = require('../actions/RoundActionCreators')
 var RoundItem = require('./RoundItem.react')
 
 var React = require('react')
@@ -7,24 +8,20 @@ class RoundController extends RoundItem {
   constructor(props) {
     super(props)
 
-    this.state.isRunning = false
+    this.state = { isRunning: false }
   }
 
   componentWillUnmount() {
     clearInterval(this.interval)
   }
 
-  tick() {
-    this.setState({ secondsRemaining: this.state.secondsRemaining - 1 })
-  }
-
   renderController() {
     var controllers = []
 
-    controllers.push(<span key='toggle' onClick={this._toggleTimer.bind(this)}>{this.state.isRunning ? 'Stop' : 'Start'}</span>)
+    controllers.push(<span key='toggle' onClick={this._toggle.bind(this)}>{this.state.isRunning ? 'Stop' : 'Start'}</span>)
 
-    if (!this.state.isRunning && this.state.secondsRemaining != this.props.roundLength) {
-      controllers.push(<span key='reset' onClick={this._resetTimer.bind(this)}>Reset</span>)
+    if (!this.state.isRunning && this.props.round.secondsRemaining != this.props.round.roundLength) {
+      controllers.push(<span key='reset' onClick={this._reset.bind(this)}>Reset</span>)
     }
 
     return controllers
@@ -40,23 +37,27 @@ class RoundController extends RoundItem {
     )
   }
 
-  _toggleTimer() {
+  _tick() {
+    RoundActionCreators.tick(this.props.round.id)
+  }
+
+  _toggle() {
     if (this.state.isRunning) {
       clearInterval(this.interval)
     } else {
-      this.interval = setInterval(this.tick.bind(this), 1000)
+      this.interval = setInterval(this._tick.bind(this), 1000)
     }
 
     this.setState({ isRunning: !this.state.isRunning })
   }
 
-  _resetTimer() {
-    this.setState({ secondsRemaining: this.state.roundLength })
+  _reset() {
+    RoundActionCreators.reset(this.props.round.id)
   }
 }
 
 RoundController.propTypes = {
-  round: React.PropTypes.number.isRequired
+  round: React.PropTypes.object.isRequired
 }
 
 

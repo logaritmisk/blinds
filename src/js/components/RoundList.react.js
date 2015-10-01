@@ -22,19 +22,19 @@ class RoundList extends React.Component {
   }
 
   componentDidMount() {
-    RoundStore.addChangeListener(this._onChange)
+    RoundStore.addChangeListener(this._onChange.bind(this))
   }
 
   componentWillUnmount() {
-    RoundStore.removeChangeListener(this._onChange)
+    RoundStore.removeChangeListener(this._onChange.bind(this))
   }
 
   render() {
     var rounds = this.state.rounds.map((round, i) => {
       if (i == this.state.active) {
-        return <RoundController key={i} round={i} />
+        return <RoundController key={i} round={round} />
       } else {
-        return <RoundItem key={i} round={i} />
+        return <RoundItem key={i} round={round} />
       }
     })
 

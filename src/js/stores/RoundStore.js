@@ -11,12 +11,14 @@ var CHANGE_EVENT = 'change'
 
 var _rounds = [
   {
+    id: 0,
     smallBlind: 25,
     bigBlind: 50,
     roundLength: 60 * 20,
     secondsRemaining: 60 * 20
   },
   {
+    id: 1,
     smallBlind: 50,
     bigBlind: 75,
     roundLength: 60 * 20,
@@ -54,16 +56,25 @@ class RoundStore extends EventEmitter {
 }
 
 
+var _instance = new RoundStore()
+
+
 RoundStore.dispatchToken = AppDispatcher.register(action => {
   switch(action.type) {
-    case ActionTypes.CREATE_ROUND:
-        RoundStore.emitChange()
-        break;
+    case ActionTypes.TICK:
+    _rounds[action.round].secondsRemaining -= 1
+    _instance.emitChange()
+    break;
+
+    case ActionTypes.RESET:
+    _rounds[action.round].secondsRemaining = _rounds[action.round].roundLength
+    _instance.emitChange()
+    break;
 
     default:
-        // do nothing
-    }
+    // do nothing
+  }
 })
 
 
-export default new RoundStore()
+export default _instance

@@ -6,12 +6,10 @@ var React = require('react')
 class RoundItem extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = RoundStore.getRound(this.props.round)
   }
 
   renderTimer() {
-    var secondsRemaining = this.state.secondsRemaining
+    var secondsRemaining = this.props.round.secondsRemaining
 
     var minutes = Math.trunc(secondsRemaining / 60)
     var seconds = secondsRemaining % 60
@@ -26,7 +24,7 @@ class RoundItem extends React.Component {
   renderBlinds() {
     return (
       <div>
-        {this.state.smallBlind}/{this.state.bigBlind}
+        {this.props.round.smallBlind}/{this.props.round.bigBlind}
       </div>
     )
   }
@@ -42,7 +40,7 @@ class RoundItem extends React.Component {
 }
 
 RoundItem.propTypes = {
-  round: React.PropTypes.number.isRequired
+  round: React.PropTypes.object.isRequired
 }
 
 
