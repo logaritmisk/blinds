@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+  body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #before {
+    flex: 1 0 auto;
+    align-items: flex-end;
+    background: #fefefe;
+  }
+
+  #active {
+    flex: 2 1 auto;
+    background: #e3e3e3;
+  }
+
+  #after {
+    flex: 1 0 auto;
+    align-items: flex-start;
+    background: #fefefe;
+  }
+  </style>
+</head>
+<body>
+  <div id="before">
+    <div class="round">
+      Round #1
+    </div>
+    <div class="round">
+      Round #2
+    </div>
+  </div>
+  <div id="active">
+    <div class="round">
+      Round #3 (active)
+    </div>
+  </div>
+  <div id="after">
+    <div class="round">
+      Round #4
+    </div>
+    <div class="round">
+      Round #5
+    </div>
+  </div>
+</body>
+</html>
