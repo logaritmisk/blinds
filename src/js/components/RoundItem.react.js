@@ -3,6 +3,8 @@ var RoundStore = require('../stores/RoundStore')
 
 var React = require('react')
 
+var numeral = require('numeral')
+
 
 class RoundItem extends React.Component {
   constructor(props) {
@@ -16,23 +18,25 @@ class RoundItem extends React.Component {
     var seconds = secondsRemaining % 60
 
     return (
-      <div>
-        {minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}
+      <div className='timer'>
+        {minutes < 10 ? '0' + minutes : minutes}<span className='divider'>:</span>{seconds < 10 ? '0' + seconds : seconds}
       </div>
     )
   }
 
   renderBlinds() {
     return (
-      <div>
-        {this.props.round.smallBlind}/{this.props.round.bigBlind}
+      <div className='blinds'>
+        <span className='small'>{numeral(this.props.round.smallBlind).format('0,0')}</span>
+        <span className='divider'>/</span>
+        <span className='big'>{numeral(this.props.round.bigBlind).format('0,0')}</span>
       </div>
     )
   }
 
   render() {
     return (
-      <div onClick={this._onClick.bind(this)}>
+      <div className='round' onClick={this._onClick.bind(this)}>
         {this.renderTimer()}
         {this.renderBlinds()}
       </div>

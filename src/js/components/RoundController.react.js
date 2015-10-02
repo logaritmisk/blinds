@@ -31,10 +31,12 @@ class RoundController extends RoundItem {
 
   render() {
     return (
-      <div>
+      <div className='round'>
         {this.renderTimer()}
         {this.renderBlinds()}
-        {this.renderController()}
+        <div className='controller'>
+          {this.renderController()}
+        </div>
       </div>
     )
   }

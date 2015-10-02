@@ -30,17 +30,33 @@ class RoundList extends React.Component {
   }
 
   render() {
-    var rounds = this.state.rounds.map((round, i) => {
-      if (i == this.state.active) {
-        return <RoundController key={i} round={round} />
+    var finished = []
+    var active = []
+    var left = []
+
+    Object.keys(this.state.rounds).forEach(key => {
+      var round = this.state.rounds[key]
+
+      if (round.id == this.state.active) {
+        active.push(<RoundController key={key} round={round} />)
+      } else if (active.length > 0) {
+        left.push(<RoundItem key={key} round={round} />)
       } else {
-        return <RoundItem key={i} round={round} />
+        finished.push(<RoundItem key={key} round={round} />)
       }
     })
 
     return (
-      <div>
-        {rounds}
+      <div className='rounds'>
+        <div className='finished'>
+          {finished}
+        </div>
+        <div className='active'>
+          {active}
+        </div>
+        <div className='left'>
+          {left}
+        </div>
       </div>
     )
   }
