@@ -66,6 +66,9 @@ _instance.dispatchToken = AppDispatcher.register(action => {
       _data.length = round.length
       _data.remaining = _data.length
 
+      clearInterval(_data.interval)
+      _data.interval = undefined
+
       _instance.emitChange()
       break
 
