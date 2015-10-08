@@ -11,7 +11,7 @@ class Import extends Component {
       <div id="import">
         <textarea ref={ref => this.dataInput = ref }></textarea>
         <div className="import-controllers">
-          <span onClick={this._onClick.bind(this)}>Save</span>
+          <span className="button" onClick={this._onClick.bind(this)}>Save</span>
         </div>
       </div>
     )

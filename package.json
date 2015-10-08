@@ -17,18 +17,20 @@
     "ws": "^0.8.0"
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
     "babelify": "*",
-    "envify": "^3.0.0",
+    "browserify": "^6.2.0",
+    "node-sass": "^3.3.3",
+    "nodemon": "^1.7.1",
     "reactify": "^0.15.2",
     "uglify-js": "~2.4.15",
-    "watchify": "^2.1.1"
+    "watch": "latest"
   },
   "scripts": {
-    "start": "watchify -o public/js/bundle.js -v -d src/js/app.js",
-    "build:js": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > public/js/bundle.js",
-    "build:css": "cp -R src/css public/",
-    "build:html": "cp -R src/index.html public/"
+    "build:js": "browserify src/js/app.js > public/js/bundle.js",
+    "build:css": "node-sass --include-path scss src/scss/main.scss  public/css/main.css",
+    "build:html": "cp -R src/index.html public/",
+    "build": "npm run build:js && npm run build:css && npm run build:html",
+    "watch": "watch 'npm run build' src/"
   },
   "author": "Anders Olsson",
   "browserify": {
@@ -41,8 +43,7 @@
           ]
         }
       ],
-      "reactify",
-      "envify"
+      "reactify"
     ]
   }
 }

@@ -40,8 +40,8 @@ class App extends Component {
       <div id="main" className={className}>
         <div id="navigation">
           <ul>
-            <li><Link to="/">Timer</Link></li>
-            <li><Link to="/import">Import</Link></li>
+            <li><Link to="/" className="button">Timer</Link></li>
+            <li><Link to="/import" className="button">Import</Link></li>
           </ul>
         </div>
         <div id="content">

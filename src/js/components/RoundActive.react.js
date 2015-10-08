@@ -14,7 +14,7 @@ class TimerReset extends Component {
     let status = this.props.status
 
     return (
-      <span onClick={this._onClick.bind(this)}>
+      <span className="button" onClick={this._onClick.bind(this)}>
         Reset
       </span>
     )
@@ -52,7 +52,7 @@ class TimerToggle extends Component {
     }
 
     return (
-      <span onClick={this._onClick.bind(this)}>
+      <span className="button" onClick={this._onClick.bind(this)}>
         {text}
       </span>
     )
