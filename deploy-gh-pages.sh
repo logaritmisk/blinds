@@ -7,7 +7,6 @@ npm run build:css
 npm run build:html
 npm run build:js
 
-
 cd public
 
 git init
