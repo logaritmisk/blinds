@@ -1,105 +1,108 @@
 body {
   margin: 0;
+}
+
+#timer {
   width: 100vw;
   height: 100vh;
-  background: #fefefe;
+  display: flex;
+  align-items: stretch;
 }
 
-#app {
-  height: 100%;
+#timer.timer-ended {
+  animation: blink 0.5s 10;
 }
 
-.rounds {
+@keyframes blink {
+  50% { background: #000000; }
+}
+
+#rounds {
   display: flex;
   flex-direction: column;
-  height: 100%
-}
-
-.finished {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1;
-}
-
-.active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  background: #5863f8;
-  color: #fefefe;
-}
-.active .controller {
-  visibility: hidden;
-}
-.active:hover .controller {
-  visibility: visible;
-}
-
-.left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  flex: 1;
-  overflow: hidden;
-}
-
-.round {
-  padding: 10px;
-  width: 80vw;
-  text-align: center;
-}
-.round .timer {
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-}
-.round .blinds {
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-}
-.round .blinds span {
   align-self: center;
-  flex: 1;
-}
-.round .blinds span.small {
-  text-align: right;
-}
-.round .blinds span.big {
-  text-align: left;
-}
-.round .blinds span.divider {
-  font-size: 10px;
-  margin: 0 2px;
-  flex: 0 0 auto;
-}
-.round .controller {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  margin-left: 20px;
 }
 
-.active .round {
+#rounds .round-item {
+    padding: 5px 10px;
+}
+
+#rounds .round-number {
+  display: inline-block;
+  color: #ffffff;
+  background: #000000;
+  width: 30px;
+  border-radius: 100px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+#rounds .round-item.active .round-number {
+  background: #ff0000;
+}
+
+
+#rounds .round-blinds {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#active {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-self: center;
+  align-items: center;
+}
+
+#active .round-timer {
+  font-size: 250px;
+}
+
+#active .round-blinds {
+  font-size: 100px;
+}
+
+#active .timer-controllers {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+}
+
+#active .timer-controllers span {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  color: #ffffff;
+  background: #000000;
+  margin: 10px;
+  padding: 10px;
+}
+
+#import {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#import textarea {
   flex: 1;
-  position: relative;
 }
-.active .round .timer {
-  font-size: 96px;
+
+#import span {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  color: #ffffff;
+  background: #000000;
+  margin: 10px;
+  padding: 10px;
 }
-.active .round .blinds {
-  font-size: 64px;
-}
-.active .round .blinds span.divider {
-  font-size: 48px;
-  margin: 0 10px;
+
+#import .import-controllers {
+  width: 100%;
+  text-align: right;
 }

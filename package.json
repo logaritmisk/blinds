@@ -26,7 +26,9 @@
   },
   "scripts": {
     "start": "watchify -o public/js/bundle.js -v -d src/js/app.js",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > public/js/bundle.min.js"
+    "build:js": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > public/js/bundle.js",
+    "build:css": "cp -R src/css public/",
+    "build:html": "cp -R src/index.html public/"
   },
   "author": "Anders Olsson",
   "browserify": {
