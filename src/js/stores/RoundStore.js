@@ -132,8 +132,16 @@ let _instance = new RoundStore()
 
 _instance.dispatchToken = AppDispatcher.register(action => {
   switch(action.type) {
+    case AppConstants.ROUND_LOAD_ROUNDS:
+      _data.active = 0
+      _data.rounds = action.rounds
+
+      _instance.emitChange()
+      break;
+
     case AppConstants.ROUND_SET_ACTIVE:
       _data.active = action.round
+
       _instance.emitChange()
       break
 

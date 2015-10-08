@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import RoundActionCreators from '../actions/RoundActionCreators'
 
-import RoundList from './RoundList.react'
-import RoundActive from './RoundActive.react'
+import RoundList from '../components/RoundList.react'
+import RoundActive from '../components/RoundActive.react'
 
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id="app">
+      <div id="timer">
         <RoundList />
         <RoundActive />
       </div>
