@@ -142,6 +142,7 @@ body {
 }
 
 #import .import-controllers {
+  margin-top: 20px;
   width: 100%;
-  text-align: right;
+  text-align: center;
 }
