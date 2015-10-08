@@ -1,8 +1,6 @@
 #!/bin/bash
 set -x
 
-printenv
-
 rm -rf public || exit 0
 mkdir -p public/js
 
