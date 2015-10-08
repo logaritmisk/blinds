@@ -15,7 +15,7 @@ cd public
 git init
 
 git config user.name "Travis-CI"
-git config user.email "travis@w3ctag.org"
+git config user.email "travis@aceofba.se"
 
 git add .
 git commit -m "Deploy to GitHub Pages"
