@@ -115,6 +115,7 @@ body {
   background: #000000;
   margin: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 #import {
@@ -136,6 +137,7 @@ body {
   background: #000000;
   margin: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 #import .import-controllers {
