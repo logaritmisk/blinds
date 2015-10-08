@@ -3,6 +3,9 @@
 rm -rf public || exit 0
 mkdir -p public/js
 
+npm install qs
+npm install deep-equal
+
 npm run build:css
 npm run build:html
 npm run build:js
