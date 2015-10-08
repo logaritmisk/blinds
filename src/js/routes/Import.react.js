@@ -40,8 +40,6 @@ class Import extends Component {
     rounds.map(round => round.length = length)
 
     RoundActionCreators.loadRounds(rounds)
-
-    this.props.history.pushState(null, `/`)
   }
 }
 
