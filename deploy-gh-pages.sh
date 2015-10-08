@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 rm -rf public || exit 0
 mkdir -p public/js
