@@ -13,6 +13,7 @@ const CHANGE_EVENT = 'change'
 const TIMER_STOPPED = 'stopped'
 const TIMER_STARTED = 'started'
 const TIMER_PAUSED = 'paused'
+const TIMER_ENDED = 'ended'
 
 
 let _data = {
@@ -107,6 +108,14 @@ _instance.dispatchToken = AppDispatcher.register(action => {
 
     case AppConstants.TIMER_TICK:
       _data.remaining -= 1
+
+      if (_data.remaining <= 0) {
+        _data.status = TIMER_ENDED
+        _data.remaining = 0
+
+        clearInterval(_data.interval)
+        _data.interval = undefined
+      }
 
       _instance.emitChange()
       break;

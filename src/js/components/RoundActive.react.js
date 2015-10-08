@@ -21,7 +21,7 @@ class TimerReset extends Component {
   }
 
   _onClick() {
-    if (this.props.status == 'paused') {
+    if (this.props.status == 'paused' || this.props.status == 'ended') {
       TimerActionCreators.resetTimer()
     }
   }

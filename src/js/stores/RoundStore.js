@@ -13,7 +13,7 @@ let _data = {
     {
       smallBlind: 25,
       bigBlind: 50,
-      length: 60 * 20,
+      length: 5,
     },
     {
       smallBlind: 50,
