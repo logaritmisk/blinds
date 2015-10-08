@@ -1,15 +1,23 @@
-var RoundList = require('./RoundList.react')
+import React, { Component } from 'react'
 
-var React = require('react')
+import RoundActionCreators from '../actions/RoundActionCreators'
+
+import RoundList from './RoundList.react'
+import RoundActive from './RoundActive.react'
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
+class App extends Component {
+  componentDidMount() {
+    RoundActionCreators.setActiveRound(0)
   }
 
   render() {
-    return <RoundList />
+    return (
+      <div id="app">
+        <RoundList />
+        <RoundActive />
+      </div>
+    )
   }
 }
 

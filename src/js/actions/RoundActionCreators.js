@@ -1,29 +1,13 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher')
-var AppConstants = require('../constants/AppConstants')
-
-var ActionTypes = AppConstants.ActionTypes
+import AppDispatcher from '../dispatcher/AppDispatcher'
+import AppConstants from '../constants/AppConstants'
 
 
 export default {
 
-  tickTimer(id) {
+  setActiveRound(round) {
     AppDispatcher.dispatch({
-      type: ActionTypes.TICK,
-      round: id
-    })
-  },
-
-  resetTimer(id) {
-    AppDispatcher.dispatch({
-      type: ActionTypes.RESET,
-      round: id
-    })
-  },
-
-  setActive(id) {
-    AppDispatcher.dispatch({
-      type: ActionTypes.ACTIVE,
-      round: id
+      type: AppConstants.ROUND_SET_ACTIVE,
+      round: round
     })
   }
 

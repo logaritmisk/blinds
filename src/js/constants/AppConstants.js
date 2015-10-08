@@ -1,10 +1,10 @@
-var keyMirror = require('keymirror')
-
-
 export default {
-    ActionTypes: keyMirror({
-        TICK: null,
-        RESET: null,
-        ACTIVE: null
-    })
+
+  ROUND_SET_ACTIVE: 'ROUND_SET_ACTIVE',
+  TIMER_INIT: 'TIMER_INIT',
+  TIMER_START: 'TIMER_START',
+  TIMER_PAUSE: 'TIMER_PAUSE',
+  TIMER_RESET: 'TIMER_RESET',
+  TIMER_TICK: 'TIMER_TICK'
+
 }

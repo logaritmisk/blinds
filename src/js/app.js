@@ -1,6 +1,6 @@
-var App = require('./components/App.react')
+import React from 'react'
 
-var React = require('react')
+import App from './components/App.react'
 
 
-React.render(<App />, document.getElementById('app'))
+React.render(<App />, document.body)

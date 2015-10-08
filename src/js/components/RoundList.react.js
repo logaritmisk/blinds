@@ -1,24 +1,17 @@
-var RoundStore = require('../stores/RoundStore')
+import React, { Component } from 'react'
 
-var RoundItem = require('./RoundItem.react')
-var RoundController = require('./RoundController.react')
+import RoundActionCreators from '../actions/RoundActionCreators'
 
-var React = require('react')
+import RoundStore from '../stores/RoundStore'
 
-
-function getStateFromStores() {
-  return {
-    rounds: RoundStore.getRounds(),
-    active: RoundStore.getActive()
-  }
-}
+import RoundBlinds from './RoundBlinds.react.js'
 
 
-class RoundList extends React.Component {
+class RoundList extends Component {
   constructor(props) {
     super(props)
 
-    this.state = getStateFromStores()
+    this.state = this._getStateFromStores()
   }
 
   componentDidMount() {
@@ -30,39 +23,32 @@ class RoundList extends React.Component {
   }
 
   render() {
-    var finished = []
-    var active = []
-    var left = []
-
-    Object.keys(this.state.rounds).forEach(key => {
-      var round = this.state.rounds[key]
-
-      if (round.id == this.state.active) {
-        active.push(<RoundController key={key} round={round} />)
-      } else if (active.length > 0) {
-        left.push(<RoundItem key={key} round={round} />)
-      } else {
-        finished.push(<RoundItem key={key} round={round} />)
-      }
-    })
-
     return (
-      <div className='rounds'>
-        <div className='finished'>
-          {finished}
-        </div>
-        <div className='active'>
-          {active}
-        </div>
-        <div className='left'>
-          {left}
-        </div>
+      <div id="rounds">
+        {this.state.rounds.map((round, i) => {
+          return (
+            <div key={i} className="round-item" onClick={event => { RoundActionCreators.setActiveRound(i) }}>
+              <span className="round-number">{i + 1}</span>
+              <RoundBlinds
+                smallBlind={round.smallBlind}
+                bigBlind={round.bigBlind}
+              />
+            </div>
+          )
+        })}
       </div>
     )
   }
 
+  _getStateFromStores() {
+    return {
+      active: RoundStore.getActive(),
+      rounds: RoundStore.getRounds()
+    }
+  }
+
   _onChange() {
-    this.setState(getStateFromStores())
+    this.setState(this._getStateFromStores())
   }
 }
 
