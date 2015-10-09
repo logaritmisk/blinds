@@ -1,7 +1,9 @@
 #!/bin/bash
 
 rm -rf public || exit 0
+
 mkdir -p public/js
+mkdir -p public/css
 
 npm install qs
 npm install deep-equal
