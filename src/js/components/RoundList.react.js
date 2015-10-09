@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import RoundActionCreators from '../actions/RoundActionCreators'
 
+import TimerStore from '../stores/TimerStore'
 import RoundStore from '../stores/RoundStore'
 
 import RoundBlinds from './RoundBlinds.react.js'
@@ -17,10 +18,12 @@ class RoundList extends Component {
   }
 
   componentDidMount() {
+    TimerStore.addChangeListener(this._onChange.bind(this))
     RoundStore.addChangeListener(this._onChange.bind(this))
   }
 
   componentWillUnmount() {
+    TimerStore.removeChangeListener(this._onChange.bind(this))
     RoundStore.removeChangeListener(this._onChange.bind(this))
   }
 
@@ -35,7 +38,11 @@ class RoundList extends Component {
           }
 
           return (
-            <div key={i} className={classNames(classes)} onClick={event => { RoundActionCreators.setActiveRound(i) }}>
+            <div key={i} className={classNames(classes)} onClick={event => {
+              if (this.state.timerStatus == 'stopped') {
+                RoundActionCreators.setActiveRound(i)
+              }
+              }}>
               <span className="round-number">{i + 1}</span>
               <RoundBlinds
                 smallBlind={round.smallBlind}
@@ -51,7 +58,8 @@ class RoundList extends Component {
   _getStateFromStores() {
     return {
       active: RoundStore.getActive(),
-      rounds: RoundStore.getRounds()
+      rounds: RoundStore.getRounds(),
+      timerStatus: TimerStore.getStatus()
     }
   }
 

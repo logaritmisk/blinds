@@ -23,11 +23,14 @@
     "nodemon": "^1.7.1",
     "reactify": "^0.15.2",
     "uglify-js": "~2.4.15",
-    "watch": "latest"
+    "watch": "latest",
+    "autoprefixer": "latest",
+    "cssmin": "latest",
+    "postcss-cli": "latest"
   },
   "scripts": {
     "build:js": "browserify src/js/app.js > public/js/bundle.js",
-    "build:css": "node-sass --include-path scss src/scss/main.scss  public/css/main.css",
+    "build:css": "node-sass --include-path src/scss src/scss/main.scss | postcss --use autoprefixer > public/css/main.css",
     "build:html": "cp -R src/index.html public/",
     "build": "npm run build:js && npm run build:css && npm run build:html",
     "watch": "watch 'npm run build' src/"

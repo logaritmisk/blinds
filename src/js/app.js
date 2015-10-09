@@ -30,11 +30,7 @@ class App extends Component {
   }
 
   render() {
-    let className = ''
-
-    if (this.state.timerStatus == 'ended') {
-      className = 'timer-ended'
-    }
+    let className = 'timer-' + this.state.timerStatus
 
     return (
       <div id="main" className={className}>
