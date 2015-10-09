@@ -1,16 +1,23 @@
 body {
   margin: 0;
+  font-family: Arial Rounded MT Bold,Helvetica Rounded,Arial,sans-serif; 
+  background-color: #bdc3c7;
 }
 
 .button {
   display: inline-block;
   text-align: center;
   color: #ffffff;
-  background: #000000;
+  background: #2c3e50;
   margin: 10px;
   padding: 10px;
   cursor: pointer;
   text-decoration: none;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background: #34495e;
 }
 
 #main {
@@ -68,20 +75,33 @@ body {
     padding: 5px 10px;
     cursor: pointer;
 
-    &.active .round-number {
-      background: #ff0000;
+    border-style: solid;
+    border-color: #bdc3c7;
+    border-width: 1px;
+    border-radius: 50px;
+
+    &.active {
+      background-color: #EEE
     }
+    &.active .round-number {
+      background: #c0392b;
+    }
+  }
+
+  .round-item:hover {
+    border-color: #EEE;
   }
 
   .round-number {
     display: inline-block;
     color: #ffffff;
-    background: #000000;
+    background: #2c3e50;
     width: 30px;
     border-radius: 100px;
     text-align: center;
     vertical-align: middle;
     margin-right: 10px;
+    padding: 1px 0px;
   }
 
   .round-blinds {
@@ -103,6 +123,9 @@ body {
 
   .round-blinds {
     font-size: 100px;
+    line-height: 100px;
+    margin-left: 30px;
+    color: #34495e;
   }
 
   .timer-controllers {
@@ -114,6 +137,12 @@ body {
       width: 20%;
     }
   }
+}
+
+textarea {
+  border-radius: 4px;
+  border-width: 0px;
+  background-color: #ecf0f1;
 }
 
 #import {
