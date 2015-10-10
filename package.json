@@ -32,8 +32,10 @@
     "build:js": "browserify src/js/app.js > public/js/bundle.js",
     "build:css": "node-sass --include-path src/scss src/scss/main.scss | postcss --use autoprefixer > public/css/main.css",
     "build:html": "cp -R src/index.html public/",
+    "watch:js": "watchify src/js/app.js -d -o public/js/bundle.js -v",
+    "watch:css": "nodemon -e scss -x 'npm run build:css'",
     "build": "npm run build:js && npm run build:css && npm run build:html",
-    "watch": "watch 'npm run build' src/"
+    "watch": "npm run watch:js & npm run watch:css"
   },
   "author": "Anders Olsson",
   "browserify": {
