@@ -39,10 +39,10 @@ class RoundList extends Component {
 
           return (
             <div key={i} className={classNames(classes)} onClick={event => {
-              if (this.state.timerStatus == 'stopped') {
+              if (this.state.timerStatus == 'stopped' || this.state.timerStatus == 'ended') {
                 RoundActionCreators.setActiveRound(i)
               }
-              }}>
+            }}>
               <span className="round-number">{i + 1}</span>
               <RoundBlinds
                 smallBlind={round.smallBlind}
