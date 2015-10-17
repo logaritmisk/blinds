@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import RoundActionCreators from '../actions/RoundActionCreators'
 import TimerActionCreators from '../actions/TimerActionCreators'
 
 import RoundStore from '../stores/RoundStore'
@@ -39,16 +40,20 @@ class TimerToggle extends Component {
 
     switch (this.props.status) {
       case 'started':
-        text = 'Pause'
-        break
+      text = 'Pause'
+      break
 
       case 'paused':
-        text = 'Resume'
-        break
+      text = 'Resume'
+      break
+
+      case 'ended':
+      text = 'Start next round'
+      break
 
       default:
-        text = 'Start'
-        break
+      text = 'Start'
+      break
     }
 
     return (
@@ -61,7 +66,12 @@ class TimerToggle extends Component {
   _onClick() {
     let status = this.props.status
 
-    if (status == 'stopped' || status == 'paused') {
+    if (status == 'ended') {
+      let active = RoundStore.getActive()
+
+      RoundActionCreators.setActiveRound(active + 1)
+      TimerActionCreators.startTimer()
+    } else if (status == 'stopped' || status == 'paused') {
       TimerActionCreators.startTimer()
     } else {
       TimerActionCreators.pauseTimer()
