@@ -104,13 +104,10 @@ class RoundActive extends Component {
   render() {
     return (
       <div id="active">
-        <RoundTimer
-          secondsRemaining={this.state.timerRemaining}
-        />
-        <RoundBlinds
-          smallBlind={this.state.activeRound.smallBlind}
-          bigBlind={this.state.activeRound.bigBlind}
-        />
+        <RoundTimer secondsRemaining={this.state.timerRemaining} />
+        {this.state.activeRound.type == 'round'
+          ? <RoundBlinds smallBlind={this.state.activeRound.smallBlind} bigBlind={this.state.activeRound.bigBlind} />
+          : <div className="break">Break</div>}
         <div className="timer-controllers">
           <TimerReset status={this.state.timerStatus} />
           <TimerToggle status={this.state.timerStatus} />

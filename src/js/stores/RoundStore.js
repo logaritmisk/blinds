@@ -5,87 +5,125 @@ import AppConstants from '../constants/AppConstants'
 
 
 const CHANGE_EVENT = 'change'
+const ROUND = 'round'
+const BREAK = 'break'
 
 
 let _data = {
   active: 0,
   rounds: [
     {
+      type: ROUND,
       smallBlind: 25,
       bigBlind: 50,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 50,
       bigBlind: 100,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 75,
       bigBlind: 150,
       length: 60 * 20,
     },
     {
+      type: BREAK,
+      length: 60 * 15,
+    },
+    {
+      type: ROUND,
       smallBlind: 100,
       bigBlind: 200,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 150,
       bigBlind: 300,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 200,
       bigBlind: 400,
       length: 60 * 20,
     },
     {
+      type: BREAK,
+      length: 60 * 15,
+    },
+    {
+      type: ROUND,
       smallBlind: 300,
       bigBlind: 600,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 500,
       bigBlind: 1000,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 800,
       bigBlind: 1600,
       length: 60 * 20,
     },
     {
+      type: BREAK,
+      length: 60 * 15,
+    },
+    {
+      type: ROUND,
       smallBlind: 1500,
       bigBlind: 3000,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 2000,
       bigBlind: 4000,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 3000,
       bigBlind: 6000,
       length: 60 * 20,
     },
     {
+      type: BREAK,
+      length: 60 * 15,
+    },
+    {
+      type: ROUND,
       smallBlind: 5000,
       bigBlind: 10000,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 7000,
       bigBlind: 14000,
       length: 60 * 20,
     },
     {
+      type: ROUND,
       smallBlind: 10000,
       bigBlind: 20000,
       length: 60 * 20,
     },
     {
+      type: BREAK,
+      length: 60 * 15,
+    },
+    {
+      type: ROUND,
       smallBlind: 15000,
       bigBlind: 30000,
       length: 60 * 20,

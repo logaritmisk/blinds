@@ -10,6 +10,15 @@ import RoundStore from '../stores/RoundStore'
 import RoundBlinds from './RoundBlinds.react.js'
 
 
+class BreakItem extends Component {
+  render() {
+    return (
+      <div className="break-item">Break</div>
+    )
+  }
+}
+
+
 class RoundList extends Component {
   constructor(props) {
     super(props)
@@ -44,10 +53,7 @@ class RoundList extends Component {
               }
             }}>
               <span className="round-number">{i + 1}</span>
-              <RoundBlinds
-                smallBlind={round.smallBlind}
-                bigBlind={round.bigBlind}
-              />
+              {round.type == 'round' ? <RoundBlinds smallBlind={round.smallBlind} bigBlind={round.bigBlind} /> : <BreakItem />}
             </div>
           )
         })}

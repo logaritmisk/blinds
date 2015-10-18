@@ -26,8 +26,10 @@ class Import extends Component {
       let info = re.exec(line)
 
       let round = {
+        type: 'round',
         smallBlind: parseInt(info[3]),
-        bigBlind: parseInt(info[4])
+        bigBlind: parseInt(info[4]),
+        length: length
       }
 
       if (i == 1) {
@@ -35,9 +37,16 @@ class Import extends Component {
       }
 
       rounds.push(round)
+
+      if ((i + 1) % 3 == 0) {
+        rounds.push({
+          type: 'break',
+          length: 60 * 15
+        })
+      }
     })
 
-    rounds.map(round => round.length = length)
+    rounds[0].length = length
 
     RoundActionCreators.loadRounds(rounds)
   }
