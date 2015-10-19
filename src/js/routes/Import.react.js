@@ -25,16 +25,16 @@ class Import extends Component {
     this.dataInput.value.split('\n').forEach((line, i) => {
       let info = re.exec(line)
 
+      if (i == 1) {
+        length = moment.duration(info[2]).asSeconds()
+      }
+
       let round = {
         type: 'round',
         round: i + 1,
         smallBlind: parseInt(info[3]),
         bigBlind: parseInt(info[4]),
         length: length
-      }
-
-      if (i == 1) {
-        length = moment.duration(info[2]).asSeconds()
       }
 
       rounds.push(round)
