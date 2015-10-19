@@ -142,7 +142,7 @@ let _data = {
       round: 16,
       smallBlind: 15000,
       bigBlind: 30000,
-      length: 60 * 20,
+      length: 0,
     }
   ]
 }

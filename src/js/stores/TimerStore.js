@@ -57,59 +57,60 @@ let _instance = new TimerStore()
 _instance.dispatchToken = AppDispatcher.register(action => {
   switch(action.type) {
     case AppConstants.ROUND_SET_ACTIVE:
-      AppDispatcher.waitFor([RoundStore.dispatchToken])
+    AppDispatcher.waitFor([RoundStore.dispatchToken])
 
-      let active = RoundStore.getActive()
-      let round = RoundStore.getRound(active)
+    let active = RoundStore.getActive()
+    let round = RoundStore.getRound(active)
 
-      _data.status = TIMER_STOPPED
-      _data.length = round.length
-      _data.remaining = _data.length
+    _data.status = TIMER_STOPPED
+    _data.length = round.length
+    _data.remaining = _data.length
 
-      clearInterval(_data.interval)
-      _data.interval = undefined
+    clearInterval(_data.interval)
+    _data.interval = undefined
 
-      _instance.emitChange()
-      break
+    _instance.emitChange()
+    break
 
     case AppConstants.TIMER_INIT:
-      _data.status = TIMER_STOPPED
-      _data.length = action.length
-      _data.remaining = _data.length
+    _data.status = TIMER_STOPPED
+    _data.length = action.length
+    _data.remaining = _data.length
 
-      clearInterval(_data.interval)
-      _data.interval = undefined
+    clearInterval(_data.interval)
+    _data.interval = undefined
 
-      _instance.emitChange()
-      break;
+    _instance.emitChange()
+    break;
 
     case AppConstants.TIMER_START:
-      _data.status = TIMER_STARTED
-      _data.interval = setInterval(TimerActionCreators.tickTimer, 1000)
+    _data.status = TIMER_STARTED
+    _data.interval = setInterval(TimerActionCreators.tickTimer, 1000)
 
-      _instance.emitChange()
-      break;
+    _instance.emitChange()
+    break;
 
     case AppConstants.TIMER_PAUSE:
-      _data.status = TIMER_PAUSED
+    _data.status = TIMER_PAUSED
 
-      clearInterval(_data.interval)
-      _data.interval = undefined
+    clearInterval(_data.interval)
+    _data.interval = undefined
 
-      _instance.emitChange()
-      break;
+    _instance.emitChange()
+    break;
 
     case AppConstants.TIMER_RESET:
-      _data.status = TIMER_STOPPED
-      _data.remaining = _data.length
+    _data.status = TIMER_STOPPED
+    _data.remaining = _data.length
 
-      clearInterval(_data.interval)
-      _data.interval = undefined
+    clearInterval(_data.interval)
+    _data.interval = undefined
 
-      _instance.emitChange()
-      break;
+    _instance.emitChange()
+    break;
 
     case AppConstants.TIMER_TICK:
+    if (_data.length > 0) {
       _data.remaining -= 1
 
       if (_data.remaining <= 0) {
@@ -119,12 +120,14 @@ _instance.dispatchToken = AppDispatcher.register(action => {
         clearInterval(_data.interval)
         _data.interval = undefined
       }
-
-      _instance.emitChange()
-      break;
+    } else {
+      _data.remaining += 1
+    }
+    _instance.emitChange()
+    break;
 
     default:
-      break
+    break
   }
 })
 

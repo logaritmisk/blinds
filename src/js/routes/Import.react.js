@@ -20,13 +20,16 @@ class Import extends Component {
   _onClick() {
     let re = /^(\d+)\. \[\+(\d+:\d+)\] -- (\d+) \/ (\d+)$/
     let rounds = []
-    let length = 0
+    let prev_round = 0
+    let prev_duration = 0
 
     this.dataInput.value.split('\n').forEach((line, i) => {
       let info = re.exec(line)
 
-      if (i == 1) {
-        length = moment.duration(info[2]).asSeconds()
+      if (i > 0) {
+        let duration = moment.duration(info[2]).asSeconds()
+        rounds[prev_round].length = duration - prev_duration
+        prev_duration = duration
       }
 
       let round = {
@@ -34,10 +37,12 @@ class Import extends Component {
         round: i + 1,
         smallBlind: parseInt(info[3]),
         bigBlind: parseInt(info[4]),
-        length: length
+        length: 0
       }
 
       rounds.push(round)
+
+      prev_round = rounds.length - 1
 
       if ((i + 1) % 3 == 0) {
         rounds.push({
@@ -46,8 +51,6 @@ class Import extends Component {
         })
       }
     })
-
-    rounds[0].length = length
 
     RoundActionCreators.loadRounds(rounds)
   }
