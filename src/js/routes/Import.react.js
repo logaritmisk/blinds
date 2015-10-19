@@ -27,6 +27,7 @@ class Import extends Component {
 
       let round = {
         type: 'round',
+        round: i + 1,
         smallBlind: parseInt(info[3]),
         bigBlind: parseInt(info[4]),
         length: length

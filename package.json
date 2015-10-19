@@ -1,7 +1,7 @@
 {
-  "name": "timrr",
+  "name": "blinds",
   "version": "0.0.1",
-  "description": "Timrr.",
+  "description": "Blinds poker timer.",
   "repository": "",
   "main": "src/js/app.js",
   "dependencies": {

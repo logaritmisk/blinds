@@ -52,7 +52,7 @@ class RoundList extends Component {
                 RoundActionCreators.setActiveRound(i)
               }
             }}>
-              <span className="round-number">{i + 1}</span>
+              <span className="round-number">{round.type == 'round' ? round.round : ''}</span> 
               {round.type == 'round' ? <RoundBlinds smallBlind={round.smallBlind} bigBlind={round.bigBlind} /> : <BreakItem />}
             </div>
           )
