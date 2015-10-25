@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route, IndexRoute, Link } from 'react-router'
+import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router'
 
 import RoundActionCreators from './actions/RoundActionCreators'
 
@@ -36,7 +36,7 @@ class App extends Component {
       <div id="main" className={className}>
         <div id="navigation">
           <ul>
-            <li><Link to="/" className="button">Timer</Link></li>
+            <li><IndexLink to="/" className="button">Timer</IndexLink></li>
             <li><Link to="/import" className="button">Import</Link></li>
           </ul>
         </div>
