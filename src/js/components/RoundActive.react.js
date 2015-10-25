@@ -35,6 +35,9 @@ TimerReset.propTypes = {
 
 class TimerToggle extends Component {
   render() {
+    let active = RoundStore.getActive()
+    let nextRound = RoundStore.getRound(active + 1)
+
     let status = this.props.status
     let text = ''
 
@@ -48,7 +51,11 @@ class TimerToggle extends Component {
       break
 
       case 'ended':
-      text = 'Start next round'
+      if (nextRound.type == 'break') {
+        text = 'Start break'
+      } else {
+        text = 'Start next round'
+      }
       break
 
       default:

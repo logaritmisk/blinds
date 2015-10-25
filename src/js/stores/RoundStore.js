@@ -35,7 +35,7 @@ let _data = {
     },
     {
       type: BREAK,
-      length: 60 * 15,
+      length: 60 * 10,
     },
     {
       type: ROUND,
@@ -60,7 +60,7 @@ let _data = {
     },
     {
       type: BREAK,
-      length: 60 * 15,
+      length: 60 * 10,
     },
     {
       type: ROUND,
@@ -85,7 +85,7 @@ let _data = {
     },
     {
       type: BREAK,
-      length: 60 * 15,
+      length: 60 * 10,
     },
     {
       type: ROUND,
@@ -110,7 +110,7 @@ let _data = {
     },
     {
       type: BREAK,
-      length: 60 * 15,
+      length: 60 * 10,
     },
     {
       type: ROUND,
@@ -135,7 +135,7 @@ let _data = {
     },
     {
       type: BREAK,
-      length: 60 * 15,
+      length: 60 * 10,
     },
     {
       type: ROUND,

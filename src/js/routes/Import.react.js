@@ -47,7 +47,7 @@ class Import extends Component {
       if ((i + 1) % 3 == 0) {
         rounds.push({
           type: 'break',
-          length: 60 * 15
+          length: 60 * 10
         })
       }
     })
