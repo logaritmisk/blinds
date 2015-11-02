@@ -17,22 +17,24 @@
     "ws": "^0.8.0"
   },
   "devDependencies": {
-    "babelify": "*",
+    "autoprefixer": "latest",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babelify": "^7.2.0",
     "browserify": "^6.2.0",
+    "cssmin": "latest",
     "node-sass": "^3.3.3",
     "nodemon": "^1.7.1",
+    "postcss-cli": "latest",
     "reactify": "^0.15.2",
     "uglify-js": "~2.4.15",
     "watch": "latest",
-    "autoprefixer": "latest",
-    "cssmin": "latest",
-    "postcss-cli": "latest",
     "watchify": "latest"
   },
   "scripts": {
     "build:js": "browserify src/js/app.js > public/js/bundle.js",
     "build:css": "node-sass --include-path src/scss src/scss/main.scss | postcss --use autoprefixer > public/css/main.css",
-    "build:html": "cp -R src/index.html public/",
+    "build:html": "cp src/index.html public/ && cp -R src/assets public/",
     "watch:js": "watchify src/js/app.js -d -o public/js/bundle.js -v",
     "watch:css": "nodemon -e scss -x 'npm run build:css'",
     "build": "npm run build:js && npm run build:css && npm run build:html",
@@ -41,15 +43,12 @@
   "author": "Anders Olsson",
   "browserify": {
     "transform": [
-      [
-        "babelify",
-        {
-          "blacklist": [
-            "regenerator"
-          ]
-        }
-      ],
-      "reactify"
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015", "react"
     ]
   }
 }

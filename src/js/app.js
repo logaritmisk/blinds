@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router'
 
+import classNames from 'classnames'
+
 import RoundActionCreators from './actions/RoundActionCreators'
 
 import TimerStore from './stores/TimerStore'
@@ -20,8 +22,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    RoundActionCreators.setActiveRound(0)
-
     TimerStore.addChangeListener(this._onChange.bind(this))
   }
 
@@ -30,10 +30,13 @@ class App extends Component {
   }
 
   render() {
-    let className = 'timer-' + this.state.timerStatus
+    let classes = [
+      'timer-' + this.state.timerStatus,
+      'timer-remaining-' + this.state.timerRemaining
+    ]
 
     return (
-      <div id="main" className={className}>
+      <div id="main" className={classNames(classes)}>
         <div id="navigation">
           <ul>
             <li><IndexLink to="/" className="button">Timer</IndexLink></li>
@@ -51,6 +54,7 @@ class App extends Component {
   _getStateFromStores() {
     return {
       timerStatus: TimerStore.getStatus(),
+      timerRemaining: TimerStore.getRemaining(),
     }
   }
 
@@ -68,3 +72,6 @@ ReactDOM.render((
     </Route>
   </Router>
 ), document.getElementById('app'))
+
+
+RoundActionCreators.setActiveRound(0)

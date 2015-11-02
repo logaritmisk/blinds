@@ -10,6 +10,35 @@ import RoundTimer from './RoundTimer.react'
 import RoundBlinds from './RoundBlinds.react'
 
 
+class TimerAudio extends Component {
+  componentDidMount() {
+    TimerStore.addChangeListener(this._onChange.bind(this))
+  }
+
+  componentWillUnmount() {
+    TimerStore.removeChangeListener(this._onChange.bind(this))
+  }
+
+  render() {
+    return (
+      <audio id="audio" src="assets/beep-07.wav" autostart="false" ></audio>
+    )
+  }
+
+  _onChange() {
+    if (TimerStore.getStatus() == 'started') {
+      let remaining = TimerStore.getRemaining()
+
+      if (remaining <= 5) {
+        let sound = document.getElementById("audio");
+
+        sound.play()
+      }
+    }
+  }
+}
+
+
 class TimerReset extends Component {
   render() {
     let status = this.props.status
@@ -111,6 +140,7 @@ class RoundActive extends Component {
   render() {
     return (
       <div id="active">
+        <TimerAudio />
         <RoundTimer secondsRemaining={this.state.timerRemaining} />
         {this.state.activeRound.type == 'round'
           ? <RoundBlinds smallBlind={this.state.activeRound.smallBlind} bigBlind={this.state.activeRound.bigBlind} />

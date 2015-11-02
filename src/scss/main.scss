@@ -8,17 +8,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; 
+  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-  display: block; 
+  display: block;
 }
 
 body {
-  line-height: 1; 
+  line-height: 1;
 }
 
 ol, ul {
@@ -26,33 +26,33 @@ ol, ul {
 }
 
 blockquote, q {
-  quotes: none; 
+  quotes: none;
 }
 
 blockquote {
   &:before, &:after {
     content: '';
-    content: none; 
-  } 
+    content: none;
+  }
 }
 
 q {
   &:before, &:after {
     content: '';
-    content: none; 
-  } 
+    content: none;
+  }
 }
 
 table {
   border-collapse: collapse;
-  border-spacing: 0; 
+  border-spacing: 0;
 }
 
 // CONTENT
 
 html {
   height: 100%;
-  -webkit-user-select: none; /* Chrome/Safari */        
+  -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   cursor: default;
 }
@@ -84,6 +84,17 @@ span {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+
+  &.timer-remaining-5,
+  &.timer-remaining-4,
+  &.timer-remaining-3,
+  &.timer-remaining-2,
+  &.timer-remaining-1,
+  &.timer-remaining-0 {
+    & #content .round-timer {
+      color: #8A6769;
+    }
+  }
 }
 
 #navigation {
@@ -107,8 +118,8 @@ span {
     vertical-align: middle;
     text-align: center;
     border-bottom: 1px solid #AFBCC4;
-        
-    transition: all .1s ease-in-out; 
+
+    transition: all .1s ease-in-out;
   }
 
   .button:hover {
@@ -130,7 +141,7 @@ span {
   .button {
     padding: 15px 25px;
     font-size: 20pt;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
     cursor: pointer;
     margin: 10px;
@@ -142,7 +153,7 @@ span {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 
-    transition: all .3s ease-out; 
+    transition: all .3s ease-out;
   }
 
   .button:hover {
@@ -154,7 +165,7 @@ span {
     color: #111;
 
     transform: scale(1.15);
-    transition: all .05s ease-in-out; 
+    transition: all .05s ease-in-out;
   }
 
   .button:active {
@@ -163,7 +174,7 @@ span {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.30);
 
     transform: scale(1);
-    transition: all .05s ease-in-out; 
+    transition: all .05s ease-in-out;
   }
 
   #rounds {
@@ -181,7 +192,7 @@ span {
       border-bottom: 1px solid #AFBCC4;
       border-right: 1px solid #AFBCC4;
 
-      transition: all .3s ease-out; 
+      transition: all .3s ease-out;
 
       &.active {
         background-color: #BDC3C7;
@@ -240,7 +251,7 @@ span {
       color: #111;
 
       transform: scale(1.05);
-      transition: all .05s ease-in-out; 
+      transition: all .05s ease-in-out;
     }
 
     .round-item:active {
@@ -249,7 +260,7 @@ span {
       -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.30);
 
       transform: scale(1);
-      transition: all .05s ease-in-out; 
+      transition: all .05s ease-in-out;
     }
   }
 
@@ -326,7 +337,3 @@ span {
   }
 
 }
-
-
-
-

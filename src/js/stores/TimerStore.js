@@ -3,6 +3,7 @@ import { EventEmitter } from 'events'
 import AppDispatcher from '../dispatcher/AppDispatcher'
 import AppConstants from '../constants/AppConstants'
 
+import RoundActionCreators from '../actions/RoundActionCreators'
 import TimerActionCreators from '../actions/TimerActionCreators'
 
 import RoundStore from './RoundStore'
@@ -54,6 +55,33 @@ class TimerStore extends EventEmitter {
 let _instance = new TimerStore()
 
 
+function _tick() {
+  if (_data.length > 0) {
+    _data.remaining -= 1
+
+    if (_data.remaining < 0) {
+      _data.status = TIMER_ENDED
+      _data.remaining = 0
+
+      clearInterval(_data.interval)
+      _data.interval = undefined
+
+      let active = RoundStore.getActive()
+      let nextRound = RoundStore.getRound(active + 1)
+
+      if (nextRound.type == 'round') {
+        RoundActionCreators.setActiveRound(active + 1)
+        TimerActionCreators.startTimer()
+      }
+    }
+  } else {
+    _data.remaining += 1
+  }
+
+  _instance.emitChange()
+}
+
+
 _instance.dispatchToken = AppDispatcher.register(action => {
   switch(action.type) {
     case AppConstants.ROUND_SET_ACTIVE:
@@ -85,7 +113,7 @@ _instance.dispatchToken = AppDispatcher.register(action => {
 
     case AppConstants.TIMER_START:
     _data.status = TIMER_STARTED
-    _data.interval = setInterval(TimerActionCreators.tickTimer, 1000)
+    _data.interval = setInterval(_tick, 1000)
 
     _instance.emitChange()
     break;
