@@ -11,6 +11,12 @@ import RoundBlinds from './RoundBlinds.react'
 
 
 class TimerAudio extends Component {
+  constructor(props) {
+    super(props)
+
+    this.interval = undefined
+  }
+
   componentDidMount() {
     TimerStore.addChangeListener(this._onChange.bind(this))
   }
@@ -30,11 +36,29 @@ class TimerAudio extends Component {
       let remaining = TimerStore.getRemaining()
 
       if (remaining <= 5) {
-        let sound = document.getElementById("audio");
+        this._play()
+      }
 
-        sound.play()
+      if (remaining == 0) {
+        let i = 0
+
+        this.interval = setInterval(() => {
+          i++
+
+          this._play()
+
+          if (i >= 3) {
+            clearInterval(this.interval)
+          }
+        }, 250)
       }
     }
+  }
+
+  _play() {
+    let sound = document.getElementById("audio")
+
+    sound.play()
   }
 }
 
