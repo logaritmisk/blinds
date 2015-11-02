@@ -23,7 +23,7 @@ class Import extends Component {
     let prev_round = 0
     let prev_duration = 0
 
-    this.dataInput.value.split('\n').forEach((line, i) => {
+    this.dataInput.value.split('\n').map(line => line.trim()).filter(Boolean).forEach((line, i) => {
       let info = re.exec(line)
 
       if (i > 0) {
@@ -51,6 +51,10 @@ class Import extends Component {
         })
       }
     })
+
+    if (rounds[rounds.length - 1].type == 'break') {
+      rounds.pop()
+    }
 
     RoundActionCreators.loadRounds(rounds)
     RoundActionCreators.setActiveRound(0)
