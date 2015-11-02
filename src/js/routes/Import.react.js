@@ -53,6 +53,7 @@ class Import extends Component {
     })
 
     RoundActionCreators.loadRounds(rounds)
+    RoundActionCreators.setActiveRound(0)
   }
 }
 
